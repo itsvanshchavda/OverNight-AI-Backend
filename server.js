@@ -9,8 +9,8 @@ import morgan from "morgan";
 import authRoutes from "./routes/authroutes.js";
 import { connectDB } from "./db/connectDB.js";
 import "./helpers/auth.js";
-import userRoutes from "./routes/userroutes.js";
-
+import studentRoutes from "./routes/studentroute.js";
+import syllabusRoutes from "./routes/syllabusroutes.js";
 dotenv.config();
 
 const app = express();
@@ -41,8 +41,8 @@ app.use(passport.session());
 const PORT = process.env.PORT || 3000;
 
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-
+app.use("/api/student", studentRoutes);
+app.use("/api/syllabus", syllabusRoutes);
 app.get("/", (req, res) => {
   res.send("API is running");
 });

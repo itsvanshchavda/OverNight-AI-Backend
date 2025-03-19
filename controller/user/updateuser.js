@@ -1,12 +1,12 @@
 import { User } from "../../models/userModel.js";
 import bcrypt from "bcryptjs";
 
-export const updateUser = async (req, res) => {
+export const updateStudent = async (req, res) => {
   try {
     const id = req.user._id;
 
     if (id) {
-      const { name, password, onboarding_step } = req.body;
+      const { name, password, onboarding_step, role } = req.body;
 
       const user = await User.findById(id);
 
@@ -15,6 +15,8 @@ export const updateUser = async (req, res) => {
           error: "User not found",
         });
       }
+
+      if (role) user.role = role;
 
       if (name) user.name = name;
 
